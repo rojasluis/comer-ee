@@ -6,11 +6,13 @@ import { UsuarioMainComponent } from './usuario-main/usuario-main.component';
 import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { GrowlModule, DataTableModule, FileUploadModule, ConfirmDialogModule } from 'primeng/primeng';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '../../shared/shared.module';
-import { TableModule } from 'primeng/table';
-import { MatInputModule, MatSelectModule, MatSlideToggleModule } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,11 +24,8 @@ import { MatInputModule, MatSelectModule, MatSlideToggleModule } from '@angular/
     ReactiveFormsModule,
     FileUploadModule,
     ConfirmDialogModule,
-    HttpClientModule,
-    TableModule,
-    MatInputModule,
-    MatSelectModule,
-    MatSlideToggleModule
+    BrowserModule,
+    HttpClientModule
   ],
   declarations: [UsuarioMainComponent, UsuarioEditComponent, UsuarioListComponent]
 })

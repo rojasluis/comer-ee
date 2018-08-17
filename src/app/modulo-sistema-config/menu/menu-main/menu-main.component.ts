@@ -81,4 +81,18 @@ export class MenuMainComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.menusModel);
 
   }
+
+  addMenuUsuario(){
+    let x = {
+      state: 'menu',
+      name: 'MENU',
+      type: 'sub',
+      icon: 'trending_flat',
+      children: [
+        {state: 'menu', name: 'MENU'},
+        {state: 'timeline', name: 'MENU'}
+      ]
+    }    
+    this.menuService.addMenuUsuario(x);
+  }
 }

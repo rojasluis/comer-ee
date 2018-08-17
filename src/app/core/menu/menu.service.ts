@@ -23,6 +23,8 @@ export interface Menu {
   idmenu:string;
 }
 
+const MenuUsuario = [];
+
 const MENUITEMS = [
   {
     state: '/',
@@ -150,10 +152,19 @@ const MENUITEMS = [
 @Injectable()
 export class MenuService {
   getAll(): Menu[] {
+    
     return MENUITEMS;
   }
 
   add(menu) {
     MENUITEMS.push(menu);
+  }
+
+  getAllMenuUsuario(){
+    return MenuUsuario;
+  }
+  
+  addMenuUsuario(menu){
+    MenuUsuario.push(menu);
   }
 }

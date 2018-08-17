@@ -1,8 +1,10 @@
 import { PerfilModel } from "../perfil/perfil-model";
 import { FilialModel } from "../filial/filial-model";
 import { UsuarioEmpleadoModel } from "./usuario-empleado-model";
-import { MatStepperIntl } from "../../../../node_modules/@angular/material";
+
+
 export class UsuarioModel {
+
     constructor(
         public idusuario:number = 0,
         public nomusuario:string = null,
@@ -14,7 +16,9 @@ export class UsuarioModel {
         public filial:FilialModel = null,
         public usuarioempleados: UsuarioEmpleadoModel[] = [],
         public status:any = null
+        
+
     ){
+
     }
 }
-
