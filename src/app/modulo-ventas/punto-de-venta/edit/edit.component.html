@@ -1,0 +1,48 @@
+<p-growl [value]="this.msgPopup" [life]=1500>
+</p-growl>
+<button type="button" [routerLink]="['../']" class="btn btn-success">Atras</button>
+
+<div class="card">
+
+  <div class="card-header">
+    DATOS DEL USUARIO
+  </div>
+
+  <br>
+
+  <form [formGroup]="puntoVentaForm">
+
+    <div class="row">
+      <label class="col-md-2" for="">Codigo</label>
+      <div class="col-md-2">
+        <input formControlName="idpuntoventa" type="text" class="form-control inputfield" readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-md-2" for="">Descripcion</label>
+      <div class="col-md-6">
+        <input formControlName="dscpuntoventa" type="text" class="form-control inputfield">
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-md-2" for="">MAC</label>
+      <div class="col-md-6">
+        <input formControlName="mac" type="text" class="form-control inputfield" spellcheck="false">
+      </div>
+    </div>
+
+    <hr>
+    <div class="row" >
+
+      <div class="col-md-4">
+        <button [disabled]="!puntoVentaForm.valid" type="button" class="btn btn-sm btn-success" (click)="beforeSave()">
+          <span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+
+      </div>
+
+    </div>
+  </form>
+
+</div>

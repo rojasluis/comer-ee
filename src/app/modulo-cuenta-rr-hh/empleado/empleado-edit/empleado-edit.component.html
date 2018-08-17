@@ -1,0 +1,95 @@
+
+<p-growl [value]="this.msgPopup" [life]=1500>
+</p-growl>
+<button type="button" [routerLink]="['../']" class="btn btn-success">Atras</button>
+
+<div class="card">
+    <div class="card-header">
+        DATOS DEL EMPLEADO
+    </div>
+
+    <form [formGroup]="empleadoForm">
+        <div style="padding:10px;">
+
+
+            <div class="row">
+                <label class="col-md-2" for="">id empleado</label>
+                <div class="col-md-2">
+                    <input formControlName="idempleado" type="text" class="form-control inputfield" readonly>
+                </div>
+            </div>
+
+            <diV class="row">
+                <label class="col-md-2" for="">Nombres</label>
+                <div class="col-md-4">
+                    <input formControlName="nomempleado" type="text" class="form-control inputfield">
+                </div>
+                <div class="col-md-2">
+                    <span *ngIf="!empleadoForm.get('nomempleado').valid" style="color:red">*</span>
+                </div>
+            </diV>
+
+            <diV class="row">
+                <label class="col-md-2" for="">Fecha Ingreso</label>
+                <div class="col-md-4">
+                    <input formControlName="nomempleado" type="text" class="form-control inputfield">
+                </div>
+                <div class="col-md-2">
+                    <span *ngIf="!empleadoForm.get('nomempleado').valid" style="color:red">*</span>
+                </div>
+            </diV>
+
+            <diV class="row">
+                <label class="col-md-2" for="">Fecha de Nacimiento</label>
+                <div class="col-md-4">
+                    <input formControlName="nomempleado" type="text" class="form-control inputfield">
+                </div>
+                <div class="col-md-2">
+                    <span *ngIf="!empleadoForm.get('nomempleado').valid" style="color:red">*</span>
+                </div>
+            </diV>
+
+            <diV class="row">
+                <label class="col-md-2" for="">direccion</label>
+                <div class="col-md-4">
+                    <input formControlName="nomempleado" type="text" class="form-control inputfield">
+                </div>
+                <div class="col-md-2">
+                    <span *ngIf="!empleadoForm.get('nomempleado').valid" style="color:red">*</span>
+                </div>
+            </diV>
+
+            <diV class="row">
+                <label class="col-md-2" for="">telefono</label>
+                <div class="col-md-4">
+                    <input formControlName="nomempleado" type="text" class="form-control inputfield">
+                </div>
+                <div class="col-md-2">
+                    <span *ngIf="!empleadoForm.get('nomempleado').valid" style="color:red">*</span>
+                </div>
+            </diV>
+
+            <diV class="row">
+                <label class="col-md-2" for="">e-mail</label>
+                <div class="col-md-4">
+                    <input formControlName="nomempleado" type="text" class="form-control inputfield">
+                </div>
+                <div class="col-md-2">
+                    <span *ngIf="!empleadoForm.get('nomempleado').valid" style="color:red">*</span>
+                </div>
+            </diV>
+
+            <diV class="row">
+                <label class="col-md-2" for="">DNI</label>
+                <div class="col-md-4">
+                    <input formControlName="nomempleado" type="text" class="form-control inputfield">
+                </div>
+                <div class="col-md-2">
+                    <span *ngIf="!empleadoForm.get('nomempleado').valid" style="color:red">*</span>
+                </div>
+            </diV>
+
+
+        </div>
+    </form>
+</div>

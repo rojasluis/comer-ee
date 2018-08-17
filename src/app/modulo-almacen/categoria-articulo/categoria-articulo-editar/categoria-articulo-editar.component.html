@@ -1,0 +1,42 @@
+<p-growl [value]="this.msgPopup" [life]=1500>
+</p-growl>
+<button type="button" [routerLink]="['../']" class="btn btn-success">Atras</button>
+
+<div class="card">
+
+  <div class="card-header">
+    DATOS DE LA CATEGORIA
+  </div>
+
+  <br>
+
+  <form [formGroup]="categoriaForm">
+
+    <div class="row">
+      <label class="col-md-2" for="">Codigo</label>
+      <div class="col-md-2">
+        <input formControlName="idcategoria" [(ngModel)]="this.idcategoria" type="text" class="form-control inputfield" readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-md-2" for="">Descripcion</label>
+      <div class="col-md-6">
+        <input formControlName="dsccategoria" [(ngModel)]="this.dsccategoria" type="text" class="form-control inputfield">
+      </div>
+    </div>
+
+
+    <hr>
+    <div class="row" >
+
+      <div class="col-md-4">
+        <button [disabled]="!categoriaForm.valid" type="button" class="btn btn-sm btn-success" (click)="beforeSave()">
+          <span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+
+      </div>
+
+    </div>
+  </form>
+
+</div>

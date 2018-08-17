@@ -1,0 +1,324 @@
+<p-growl [value]="this.msgPopup" [life]=1500>
+
+</p-growl>
+
+<div>
+
+
+  <form [formGroup]="productoForm">
+    <div>
+      <button [disabled]="!productoForm.valid" type="button" class="btn btn-sm btn-success" (click)="save()">
+        <span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="card-header">Datos Basicos del Producto/Articulo</div>
+      <div class="card-body">
+
+
+        <div class="row">
+          <label class="col-2">ID Producto</label>
+          <input readonly formControlName="idproducto" class="form-control inputfield col-4">
+        </div>
+
+
+
+        <div class="row">
+          <label class="col-2">DESCRIPCION</label>
+          <input formControlName="dscproducto" class="form-control inputfield col-9">
+          <span *ngIf="!productoForm.get('dscproducto').valid" style="color:red">*</span>
+        </div>
+
+
+
+        <div class="row">
+          <label class="col-2">UNIDAD MEDIDA</label>
+          <select formControlName="unidadmedida" class="form-control inputselect col-4">
+            <option *ngFor="let um of unidadmedidasModel" [selected]="um.idunidadmedida == (this.productoForm.controls['unidadmedida'].value==null?'':this.productoForm.controls['unidadmedida'].value.idunidadmedida)"
+              [ngValue]="um">{{um.dscunidadmedida}}</option>
+          </select>
+          <span *ngIf="!productoForm.get('unidadmedida').valid" style="color:red">*</span>
+        </div>
+
+
+        <div class="row">
+          <label class="label-over col-2">DESCRIPCION CORTA</label>
+          <input formControlName="dscproductocorto" class="form-control inputfield col-8">
+          <span *ngIf="!productoForm.get('dscproductocorto').valid" style="color:red">*</span>
+        </div>
+        <!--     
+          <ad-autocomplet [items]="categoriasModel"   (completeMethod)="searchCategoria($event)"></ad-autocomplet> -->
+
+
+
+        <div class="row">
+          <label class="col-2">CATEGORIA</label>
+          <div class="col-10" style="margin:0; padding:0;">
+            <p-autoComplete formControlName="categoria" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" inputStyleClass="inputfield col-8"
+              field="dsccategoria" [suggestions]="categoriasModel" [dropdown]="true" (completeMethod)="searchCategoria($event)"
+              [delay]="700" (onDropdownClick)="handleDropdownClickCategoria($event)" placeholder="Categoria del producto">
+
+            </p-autoComplete>
+
+            <div>
+              <span *ngIf="!productoForm.get('categoria').valid" style="color:red">*</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="col-2">MARCA</label>
+          <div class="col-10" style="margin:0; padding:0;">
+            <p-autoComplete formControlName="marca" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" inputStyleClass="inputfield col-8"
+              [suggestions]="marcasModel" field="dscmarca" [dropdown]="true" (completeMethod)="searchMarca($event)" [delay]="700"
+              (onDropdownClick)="handleDropdownClickMarca($event)" placeholder="Marca del producto">
+
+            </p-autoComplete>
+
+
+            <div>
+              <span *ngIf="!productoForm.get('marca').valid" style="color:red">*</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+    <div class="card card-primary">
+      <div class="card-header primary">Precios de venta</div>
+      <div class="card-body">
+        <div class="form-group">
+
+          <div class="row">
+            <label class="control-label col-sm-2">Precio 1</label>
+            <div class="col-sm-4">
+              <input adDecimal formControlName="precio1" type="number" style="text-align:right;" class="form-control inputfield" placeholder="Ingrese precio base">
+            </div>
+            <div class="div-inline">
+              <span *ngIf="!productoForm.get('precio1').valid" style="color:red">*</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label class="control-label col-sm-2">Precio 2</label>
+            <div class="col-sm-4">
+              <input adDecimal formControlName="precio2" type="number" style="text-align:right;" class="form-control inputfield" placeholder="Ingrese precio 1">
+            </div>
+          </div>
+
+          <div class="row">
+            <label class="control-label col-sm-2">Precio 3</label>
+            <div class="col-sm-4">
+              <input adDecimal formControlName="precio3" type="number" style="text-align:right;" class="form-control inputfield" placeholder="Ingrese precio 2">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card card-primary">
+      <div class="card-header">Precio ultima compra y stock minimo</div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="row">
+            <label class="control-label col-sm-2">Precio compra</label>
+            <div class="col-sm-4">
+              <input adDecimal type="number" style="text-align:right;" class="form-control inputfield" placeholder="precio compra">
+            </div>
+          </div>
+          <div class="row">
+            <label class="control-label col-sm-2">Stock minimo</label>
+            <div class="col-sm-4">
+              <input adDecimal formControlName="stockminimo" type="number" style="text-align:right;" class="form-control inputfield" placeholder="Stock minimo">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card card-primary">
+      <div class="card-header">Codigo de barra</div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="row">
+            <label class="control-label col-sm-2">Codigo de barra</label>
+            <div class="col-sm-4">
+              <input type="text" [(ngModel)]="_codigobarra" [ngModelOptions]="{standalone: true}" class="form-control inputfield" placeholder="Ingrese codigo de barra">
+            </div>
+            <div class="col-sm-2">
+              <a *ngIf="_codigobarra.length > 0" class="btn btn-default btn-sm" style="cursor: pointer;" (click)="agregarCodigoBarra()">
+                <i class="fa fa-file-o fa-gl" style="cursor: pointer;" aria-hidden="true"></i>&nbsp; Agregar </a>
+            </div>
+          </div>
+
+          <div *ngIf="this.productoForm.controls['idproducto'].value > 0" class="row">
+            <label class="control-label col-sm-2">Generar Codigo de barra</label>
+            <div class="col-sm-4">
+              <a class="btn btn-default btn-sm" style="cursor: pointer;" (click)="generaCodigobarra()">
+                <i class="fa fa-barcode fa-gl" style="cursor: pointer;" aria-hidden="true"></i>&nbsp; Generar Codigo de Barra </a>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:10px;">
+            <div class="col-sm-6">
+              <table class="table table-hover">
+                <thead style="background-color:darkkhaki;">
+                  <tr>
+                    <th>Codigo de Barra Registrado</th>
+                    <th></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cb of this.productoModel.codigobarras">
+                    <td>{{cb.codigo}}</td>
+                    <td>
+
+                      <span data-toggle="tooltip" title="Quitar Codigo" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+
+                    </td>
+                    <!--  <td> <a href="" (click)="agregarCodigoBarra(cb)">Quitar</a> </td> -->
+
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card card-primary">
+      <div class="card-header">card Configuracion</div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="row">
+            <label class="control-label col-sm-3">Articulo Activo</label>
+            <div class="col-sm-4">
+              <label class="switch">
+                <input type="checkbox" formControlName="activo">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="control-label col-sm-3">Exigir registro fecha de vencimiento</label>
+            <div class="col-sm-4">
+              <label class="switch">
+                <input type="checkbox" formControlName="exigevencimiento" checked="">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="control-label col-sm-3">Exigir registro Numero Lote</label>
+            <div class="col-sm-4">
+              <label class="switch">
+                <input type="checkbox" formControlName="exigelote" checked="true">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="card card-primary">
+      <div class="card-header">card de imagenes</div>
+      <div class="card-body">
+        <div class="form-group" style="margin-left:20px;">
+
+          <div class="row">
+            <div id="fotos">
+              <div id="imageSmall">
+                <img height="200" width="200" src={{this.imageSmall}}>
+              </div>
+            </div>
+
+          </div>
+          <br>
+
+          <div class="row">
+
+            <div>
+              <div>
+                <p-fileUpload chooseLabel="Seleccionar imagen" id="f1x" uploadLabel='Subir' name="uploads[]" url={{this.urlCargarImagenes}}
+                  withCredentials="true" multiple="multiple" accept="image/*" (onBeforeSend)="onBeforeUpload($event)" (onUpload)="onUpload($event)"></p-fileUpload>
+              </div>
+              <br>
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+
+
+  <div>
+    <button [disabled]="!productoForm.valid" type="button" class="btn btn-primary" (click)="save()">
+      <span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+
+  </div>
+
+  <br>
+
+
+  <div class="card card-danger">
+    <div class="card-header">Registro de cambios (Auditoria del modulo)</div>
+    <div class="card-body">
+      <div class="form-group">
+        <div class="row" style="margin-top:10px;">
+          <div class="col-sm-6">
+            <table class="table table-hover">
+              <thead style="background-color:darkkhaki;">
+                <tr>
+                  <th>Codigo de Barra Registrado</th>
+                  <th></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>John</td>
+                  <td>Doe</td>
+
+                </tr>
+                <tr>
+                  <td>Mary</td>
+                  <td>Moe</td>
+
+                </tr>
+                <tr>
+                  <td>July</td>
+                  <td>Dooley</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
