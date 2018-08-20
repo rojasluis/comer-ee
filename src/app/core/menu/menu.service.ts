@@ -167,4 +167,8 @@ export class MenuService {
   addMenuUsuario(menu){
     MenuUsuario.push(menu);
   }
+
+  resetMenuUsuario(){
+    MenuUsuario.length = 0
+  }
 }

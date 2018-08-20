@@ -68,13 +68,13 @@ export class MenuMainComponent implements OnInit {
   }
 
   save(e){
-    debugger;
+
     this.configService.f_notEditRow(e);
   }
 
   addMenu(){
     let menu = new MenuModel();
-    debugger;
+    
     menu['isNew'] = true;
     this.configService.f_editRow(menu);
     this.menusModel.push(menu);

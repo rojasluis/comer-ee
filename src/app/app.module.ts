@@ -55,7 +55,6 @@ import { InterceptorAutorizationService } from './shared/interceptor-autorizatio
 import { CrudHttpClientServiceShared } from './shared/servicio/crudHttpClient.service.shared';
 
 
-
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -90,6 +89,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RouterModule.forRoot(AppRoutes),
     FormsModule,
     HttpClientModule,
+    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -123,8 +123,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
       
+    },
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : InterceptorAutorizationService,
+      multi : true
     }
-   
+
   ],
   bootstrap: [AppComponent]
 })
