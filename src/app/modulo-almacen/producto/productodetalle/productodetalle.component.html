@@ -128,6 +128,29 @@
             </div>
           
           </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="bg-grey">
+              <mat-panel-title>
+                Imagen del producto
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <hr><br>
+          
+            <div class="row">
+              <div class="col-md-12">                                
+                  <input type="file" placeholder="Imagen(es): " readonly multiple accept="image/*" (change)="obtnerImagenes($event)" #txtImagenes>                
+                  <br>
+                  <br>
+                  <img *ngFor="let imagen of ListImagenes" [src]="imagen" alt="" width="150px" height="150px">
+                  <img *ngIf="!ListImagenes && imagenProducto != null" height="200" width="150px" height="150px" src={{this.imagenProducto}}>
+                <br>                
+              </div>
+            </div>
+          
+          </mat-expansion-panel>
+
+
         </mat-accordion>
         </div>
 
@@ -142,9 +165,11 @@
       <br>
 
        <!-- [disabled]="!form.valid" -->
-      <button appNextfocus appKeyClick="F10" type="button" class="btn btn-success btn-sm mr-2" (click)="guardarCambios()">
+      <button appNextfocus appKeyClick="F10" type="button" class="btn btn-success btn-sm mr-2" (click)="guardarCambios()" [disabled]="!form.valid">
         <i *ngIf="procesando" class="fa fa-spinner fa-spin fa-fw"></i>
-        [F10] Guardar
+        [F10] 
+        <span *ngIf="!isEdit"> Guardar </span>
+        <span *ngIf="isEdit"> Guardar Cambios </span>
       </button>
 
     </div>
