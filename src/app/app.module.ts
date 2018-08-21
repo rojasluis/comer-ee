@@ -53,6 +53,14 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { ConfigService } from './shared/config.service';
 import { InterceptorAutorizationService } from './shared/interceptor-autorization.service';
 import { CrudHttpClientServiceShared } from './shared/servicio/crudHttpClient.service.shared';
+import { CompTipoDocumentoSunatComponent } from './componentes/comp-tipo-documento-sunat/comp-tipo-documento-sunat.component';
+import { CompTipoDocumentoIdentidadComponent } from './componentes/comp-tipo-documento-identidad/comp-tipo-documento-identidad.component';
+import { CompFindProveedorClienteComponent } from './componentes/comp-find-proveedor-cliente/comp-find-proveedor-cliente.component';
+import { CompFindEmpleadoComponent } from './componentes/comp-find-empleado/comp-find-empleado.component';
+import { CompFindProductoComponent } from './componentes/comp-find-producto/comp-find-producto.component';
+import { CompFindMedioPagoComponent } from './componentes/comp-find-medio-pago/comp-find-medio-pago.component';
+import { CompFindAlmacenComponent } from './componentes/comp-find-almacen/comp-find-almacen.component';
+import { CompFindCodigoBarraComponent } from './componentes/comp-find-codigo-barra/comp-find-codigo-barra.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -79,7 +87,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AuthLayoutComponent,
     AccordionAnchorDirective,
     AccordionLinkDirective,
-    AccordionDirective
+    AccordionDirective,
+    CompTipoDocumentoSunatComponent,
+    CompTipoDocumentoIdentidadComponent,
+    CompFindProveedorClienteComponent,
+    CompFindEmpleadoComponent,
+    CompFindProductoComponent,
+    CompFindMedioPagoComponent,
+    CompFindAlmacenComponent,
+    CompFindCodigoBarraComponent
 
 
   ],
