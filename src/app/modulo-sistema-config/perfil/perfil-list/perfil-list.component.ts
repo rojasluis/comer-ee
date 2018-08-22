@@ -67,17 +67,6 @@ export class PerfilListComponent implements OnInit {
       );
   }
 
-  // edit(item: any): void {
-  //   debugger;
-  //   this.rowEdit = true;
-  //   this.valorInicialInputEdit = item.dscperfil;
-  //   setTimeout(() => {
-  //     const nomRow = 'row' + item.idperfil;
-  //     let row: HTMLElement = document.getElementById(nomRow);
-  //     row.click();
-  //   }, 300);
-  // }
-
   guardarEdit(item: any): void {
     this.rowEdit = false;
     if (this.valorInicialInputEdit !== item.dscperfil) {
@@ -91,7 +80,7 @@ export class PerfilListComponent implements OnInit {
   public borrarRegistro(data: any): any {
     swal(MSJ_ALERT_BORRAR).then((res: any) => {
       if (res.value) {
-        this.crudService.delete(data.idpefil, this.http_model, 'delete').subscribe(res => {
+        this.crudService.delete(data.idperfil, this.http_model, 'delete').subscribe(res => {
           swal(MSJ_SUCCESS);
           // this.refreshModel(this.filtrosActivos); // cuando [lazy]="true"
           this.maestros();
