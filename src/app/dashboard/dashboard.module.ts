@@ -7,6 +7,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
 
+import { ComFindTipoDocumentoSunatModule } from '../intercambio/com-find-tipo-documento-sunat/com-find-tipo-documento-sunat.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { DashboardRoutes } from './dashboard.routing';
     MatListModule,
     MatProgressBarModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ComFindTipoDocumentoSunatModule
   ],
   declarations: [ DashboardComponent ]
 })

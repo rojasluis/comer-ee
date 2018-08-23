@@ -70,7 +70,18 @@ export class CrudHttpClientServiceShared {
       //      .map(res=> res.json());		             
 
 
-  }    
+  }
+  
+  getAllByFilter(controller: string, evento: string, filters: string): Observable<any> {
+    //const url = `${this.url}/${controller}/${evento}`;
+    //const header = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = this.configService.getUrlSecurityRes(controller, evento);
+    let header = this.configService.getHeaderHttpClientGet();
+    const filtros = JSON.stringify(JSON.stringify(this.configService.jsonFilter(filters)));
+
+    //console.log('filtros del filtro:', filtros);
+    return this.httpClient.post(url, filtros, { headers: header });
+  }
 
  
 

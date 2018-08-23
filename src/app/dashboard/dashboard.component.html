@@ -1,1 +1,32 @@
 Dashboard Works!
+
+<app-com-find-tipo-documento-sunat 
+    [filtros]="filtroPopo" 
+    [SelectValorInicial]="documentoInit"
+    (onChange)="valorRecibido=$event"
+    [mostrarSeries]=true
+    [selectetSerie]=null
+    [disabledSerie]=false
+></app-com-find-tipo-documento-sunat>
+
+<br>
+<hr>
+<br>
+
+<h2>Propiedades</h2>
+<hr>
+<br>
+<p><strong>[filtros]</strong> Opcional, iniciar o indicar dinamicamente un filtro, ejemplo: "idTipoDocumento:122:equals"<br>
+<input type="text" (keyup.enter)="aaa(txt.value)" #txt placeholder="escriba filtros"></p>
+<p><strong>[SelectValorInicial]</strong> selecciona el valor que mostrara al inicial, puede ser un modelo | 1(seleccionar el primero) | null
+    o vacio para no hacer ninguna seleccion</p>
+<p>si es valor inicial es null y en la lista solo existe un elemento muestra, entonces muestra el unico elemento existente</p>
+
+<br>
+<hr>
+<br>
+<h2>Eventos emitidos</h2>
+<hr>
+<br>
+
+<p><strong>(onChange)</strong> evento obtiene el valor seleccionado: {{valorRecibido | json}}</p>
