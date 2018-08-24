@@ -88,16 +88,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AuthLayoutComponent,
     AccordionAnchorDirective,
     AccordionLinkDirective,
-    AccordionDirective,
-    CompTipoDocumentoSunatComponent,
-    CompTipoDocumentoIdentidadComponent,
-    CompFindProveedorClienteComponent,
-    CompFindEmpleadoComponent,
-    CompFindProductoComponent,
-    CompFindMedioPagoComponent,
-    CompFindAlmacenComponent,
-    CompFindCodigoBarraComponent,
-    CompFindProveedorClienteRucComponent
+
+    AccordionDirective    
+
+  
+
 
 
   ],
