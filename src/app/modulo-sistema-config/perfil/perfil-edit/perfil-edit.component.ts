@@ -9,20 +9,20 @@ import { TreeNode } from 'primeng/api';
 
 
 import { PerfilModel } from '../perfil-model';
-import { MenuModel } from '../menu-model';
 import { PerfilDetalleModel } from '../perfil-detalle-model';
+import { MenuService } from '../../../core/menu/menu.service';
+
 
 @Component({
   selector: 'ad-perfil-edit',
   templateUrl: './perfil-edit.component.html',
   styleUrls: ['./perfil-edit.component.css'],
-  providers: [CrudHttpClientServiceShared]
+  providers: [CrudHttpClientServiceShared, MenuService]
 })
 
 
 export class PerfilEditComponent implements OnInit {
-  perfil_model: PerfilModel;
-  menu_model: MenuModel[];
+  perfil_model: PerfilModel;  
   perfil_detalle_model: PerfilDetalleModel[];
 
   form: FormGroup;
@@ -36,11 +36,13 @@ export class PerfilEditComponent implements OnInit {
   arr: any[] = [];
 
   isEdit: boolean = false;
+  loading: boolean = true; // laoding del TreeNode
 
   constructor(
     private crudService: CrudHttpClientServiceShared,
     private formBuilder: FormBuilder,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private menuService: MenuService
   ) {
     this.activateRoute.params.subscribe(
       params => this.id = params['id']);
@@ -51,26 +53,25 @@ export class PerfilEditComponent implements OnInit {
     this.maestros();
     if (this.id) {
       this.editar();
-    }
+    } else { this.loading = false; }
   }
 
   private maestros(): void {
-    this.crudService.getall('menu', 'getall').subscribe((res: any) => {
-      debugger;
-      let str: string = res.data
+    // memu desde el menuservice    
+      const res: any = this.menuService.getAll();          
+      let str: string = JSON.stringify(res);
 
-      str = str.replace(/\"items\":/g, "\"children\":");
+      str = str.replace(/\"name\":/g, "\"label\":");
       this.files = <TreeNode[]>JSON.parse(str);
-      console.log(this.files);
-    });
+      console.log(this.files);   
   }
 
   // selecciona los permisos al cargar usuario existente
-  flattenTree(node: TreeNode, nodos: any) {
+  flattenTree(node: TreeNode, nodosBD: any) {
     if (node.children) {
       node.children.forEach(childNode => {
-        nodos.map(n => {
-          if (n.leaf === 1) {
+        nodosBD.map(n => {          
+          if (n.idmenu.length > 2) {
             if (childNode['idmenu'] === n.idmenu) {
               this.arr.push(childNode);
               node.partialSelected = true;
@@ -93,40 +94,42 @@ export class PerfilEditComponent implements OnInit {
   /// recorre los elemento seleccionados adicionandoles el padre si no lo tienen
   private cocinarMenuSeleccionados(): PerfilDetalleModel[] {
     console.log('selectedFiles', this.selectedFiles);
-    this.selectedFiles.map((x: any) => {
+    this.selectedFiles.map((x: any) => {      
       let padre: any;
       let findPadre: number;
 
-      if (x.leaf === 1) {
+      if (x.parent) {
         padre = x.parent;
         findPadre = this.selectedFiles.filter((z: any) => z.idmenu === padre.idmenu).length;
         if (findPadre === 0) { this.selectedFiles.push(padre); }
       }
     });
 
-    return this.selectedFiles.map((row: any) => {
-      const menu = new MenuModel(row.idmenu, row.label, row.routerLink || '', row.leaf);
-      return null //new PerfilDetalleModel(null, menu);
+
+    return this.selectedFiles.map((row: any) => {      
+      return new PerfilDetalleModel(null, row.idmenu);
     });
   }
 
   private editar(): void {
-    this.crudService.edit(this.id, this.httpModel, 'edit').subscribe(res => {
+    this.crudService.edit(this.id, this.httpModel, 'edit').subscribe((res: any) => {      
       this.form.setValue(res);
-      this.perfil_detalle_model = <PerfilDetalleModel[]>res.perfilesdetalles;
+      this.perfil_detalle_model = <PerfilDetalleModel[]>res.perfilesdetalles || null;
+      this.loading = false; // laoding del TreeNode 
 
-      // selecciona los accesos al cargar usuario
-      // const nodos: any = <TreeNode>this.perfil_detalle_model.map(x => x.menu);
-      // this.files.map(f => this.flattenTree(f, nodos))
-      // this.selectedFiles = this.arr;
-      // this.isEdit = true;
+
+      // selecciona los accesos al cargar usuario      
+      this.files.map(f => this.flattenTree(f, this.perfil_detalle_model))
+      this.selectedFiles = this.arr;
+      this.isEdit = true;
+
     });
   }
 
   guardarCambios(): void {
     if (!this.form.valid || this.procesando) { return; }
     this.procesando = true;
-    this.form.value.perfilesdetalles = this.cocinarMenuSeleccionados();;
+    this.form.value.perfilesdetalles = this.cocinarMenuSeleccionados();
     this.perfil_model = <PerfilModel>this.form.value;
 
     console.log(this.perfil_model);

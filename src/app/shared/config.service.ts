@@ -324,6 +324,27 @@ getHeadersFormBlob() {
       
     }
 
+
+  // cocina los filtros hechos manualmente separados por (:) y (,) que se enviaran al back end - que no sea paginacion
+  // formato de ejemplo: "campo:valor:matchMode,campo:valor:matchMode"
+  // formato de ejemplo: "filial.idfilial:1:equals,usario:mramirez:contains"
+  jsonFilter(filtros: string): any {
+    let jsonRpt: string = '{}';// filtrar todos 
+    if ( filtros !==""){
+      const _filtros = filtros.split(',');      
+       jsonRpt = '';
+      _filtros.map((x: any) => {
+        const filtro = x.split(':');
+        const matchMode = filtro[2] || 'contains';
+        jsonRpt += `"${filtro[0]}":{"value": "${filtro[1]}", "matchMode":"${matchMode}"},`;
+      });
+  
+      jsonRpt = '{' + jsonRpt.slice(0, -1) + '}';
+    }
+        
+    jsonRpt = JSON.parse(jsonRpt);
+    return jsonRpt;
+  }
     
 
 }

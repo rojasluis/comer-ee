@@ -1,4 +1,3 @@
-import { MenuModel } from "./menu-model";
 import { PerfilModel } from "./perfil-model";
 
 export class PerfilDetalleModel {  

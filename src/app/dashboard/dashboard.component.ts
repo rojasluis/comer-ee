@@ -1,3 +1,4 @@
+import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../core/menu/menu.service';
 import { MenuAppService } from '../modulo-sistema-config/menu/menu-app.service';
@@ -9,16 +10,14 @@ import { PerfilService } from '../modulo-sistema-config/perfil/perfil.service';
   styleUrls: ['./dashboard.component.scss'],
   providers : [MenuService,MenuAppService,PerfilService]
 })
+
+
 export class DashboardComponent implements OnInit{
 
   constructor( private menuAppService:MenuAppService){
-
   }
 
   ngOnInit() {
-    
     this.menuAppService.getPerfilDetalle();
   }
-
-
 }
