@@ -7,25 +7,22 @@ import { UsuarioModel } from '../usuario-model';
 import { CrudHttpClientServiceShared } from '../../../shared/servicio/crudHttpClient.service.shared';
 import { FilialService } from '../../filial/filial.service';
 import { FilialModel } from '../../filial/filial-model';
-<<<<<<< HEAD
 
 import { PerfilModel } from '../../perfil/perfil-model';
 import { PerfilService } from '../../perfil/perfil.service';
 
-=======
-import { PerfilServiceService } from '../../perfil/perfil-service.service';
-import { PerfilModel } from '../../perfil/perfil-model';
->>>>>>> b77417a7d10d29a63784a041387b4e6427cc1faf
+
+
+
+
 
 @Component({
   selector: 'app-usuario-edit',
   templateUrl: './usuario-edit.component.html',
   styleUrls: ['./usuario-edit.component.css'],
-<<<<<<< HEAD
+
   providers: [CrudHttpClientServiceShared, FilialService, PerfilService]
-=======
-  providers: [CrudHttpClientServiceShared, FilialService, PerfilServiceService]
->>>>>>> b77417a7d10d29a63784a041387b4e6427cc1faf
+
 })
 export class UsuarioEditComponent implements OnInit {
   public dscfilial: string = "";
@@ -44,11 +41,7 @@ export class UsuarioEditComponent implements OnInit {
   
   constructor(
     private filialService: FilialService,
-<<<<<<< HEAD
     private perfilService: PerfilService,
-=======
-    private perfilService: PerfilServiceService,
->>>>>>> b77417a7d10d29a63784a041387b4e6427cc1faf
     private activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private crudHttpClientServiceShared: CrudHttpClientServiceShared,
@@ -113,11 +106,7 @@ export class UsuarioEditComponent implements OnInit {
         swal({
           position: 'top-end',
           type: 'success',
-<<<<<<< HEAD
           title: 'Registro Creado',
-=======
-          title: 'Usuario Creado',
->>>>>>> b77417a7d10d29a63784a041387b4e6427cc1faf
           showConfirmButton: false,
           timer: 1500
         })
@@ -138,21 +127,14 @@ export class UsuarioEditComponent implements OnInit {
         swal({
           position: 'top-end',
           type: 'success',
-<<<<<<< HEAD
           title: 'Registro Actualizado',
-=======
-          title: 'Usuario Actualizado',
->>>>>>> b77417a7d10d29a63784a041387b4e6427cc1faf
           showConfirmButton: false,
           timer: 1500
         })
       }
     )
   }
-<<<<<<< HEAD
   
-=======
->>>>>>> b77417a7d10d29a63784a041387b4e6427cc1faf
   getFilial() {
     this.filialService.getFilial()
       .subscribe(
@@ -169,16 +151,10 @@ export class UsuarioEditComponent implements OnInit {
         }
       )
   }
-<<<<<<< HEAD
-
-  changeValue(e) {
-    this.cargarData();
+  compararPerfil(c1: any, c2: any): boolean { 
+    return c1 && c2 ? c1.idperfil === c2.idperfil : c1 === c2; 
   }
-  cargarData() {
-    // this.getFilial();
+  compararFilial(c1: any, c2: any): boolean { 
+    return c1 && c2 ? c1.idfilial === c2.idfilial : c1 === c2; 
   }
-=======
->>>>>>> b77417a7d10d29a63784a041387b4e6427cc1faf
-  compararPerfil(c1: any, c2: any): boolean { return c1 && c2 ? c1.idperfil === c2.idperfil : c1 === c2; }
-  compararFilial(c1: any, c2: any): boolean { return c1 && c2 ? c1.idfilial === c2.idfilial : c1 === c2; }
 }
