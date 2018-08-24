@@ -11,11 +11,11 @@ export class UsuarioModel {
         public dni:string = null,
         public login:string = null,
         public clave:string = null,
-        public activo:number = null,
+        public activo:boolean = null,
         public perfil:PerfilModel = null,
         public filial:FilialModel = null,
         public usuarioempleados: UsuarioEmpleadoModel[] = [],
-        public status:any = null
+        public status:boolean = null
         
 
     ){

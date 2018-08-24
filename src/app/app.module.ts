@@ -61,6 +61,7 @@ import { CompFindProductoComponent } from './componentes/comp-find-producto/comp
 import { CompFindMedioPagoComponent } from './componentes/comp-find-medio-pago/comp-find-medio-pago.component';
 import { CompFindAlmacenComponent } from './componentes/comp-find-almacen/comp-find-almacen.component';
 import { CompFindCodigoBarraComponent } from './componentes/comp-find-codigo-barra/comp-find-codigo-barra.component';
+import { CompFindProveedorClienteRucComponent } from './componentes/comp-find-proveedor-cliente-ruc/comp-find-proveedor-cliente-ruc.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -95,7 +96,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CompFindProductoComponent,
     CompFindMedioPagoComponent,
     CompFindAlmacenComponent,
-    CompFindCodigoBarraComponent
+    CompFindCodigoBarraComponent,
+    CompFindProveedorClienteRucComponent
 
 
   ],

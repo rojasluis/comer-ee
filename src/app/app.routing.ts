@@ -60,9 +60,11 @@ export const AppRoutes: Routes = [
       {
         path : 'configuracion/menu',
         loadChildren : './modulo-sistema-config/menu/menu.module#MenuModule'
-
-
-      }
+      },
+      {
+        path : 'configuracion/usuarios',
+        loadChildren : './modulo-sistema-config/usuario/usuario.module#UsuarioModule'
+      }      
 
     ]
   }, 

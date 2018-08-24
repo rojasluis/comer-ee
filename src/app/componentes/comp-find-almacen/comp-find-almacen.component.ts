@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-comp-find-almacen',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompFindAlmacenComponent implements OnInit {
 
+  myControl = new FormControl();
+  
   constructor() { }
 
   ngOnInit() {
