@@ -12,7 +12,7 @@ export class ComFindTipoDocumentoSunatComponent implements OnInit, OnDestroy  {
   @Input() filtros: string = ""; // filtros
   @Input() mostrarSeries: boolean = false; // se muestra la serie y el ultimo correlativo
   @Input() disabledSerie: boolean = false; // deshabilitar select serie, no modificable
-  @Input('selectetSerie') selectetSerie: number = null; // serie seleccioada
+  @Input('selectSerie') selectSerie: number = null; // serie seleccioada
 
   @Output() onChange = new EventEmitter<any>(null);
   
@@ -68,7 +68,7 @@ export class ComFindTipoDocumentoSunatComponent implements OnInit, OnDestroy  {
 
   public changeSelect(tipoDocumento: any): void {
     console.log(tipoDocumento);    
-    this.onChange.emit(tipoDocumento);
+    //this.onChange.emit(tipoDocumento);
 
     // series numeradores
     this.numeroCorrelativo = null;
@@ -76,14 +76,15 @@ export class ComFindTipoDocumentoSunatComponent implements OnInit, OnDestroy  {
 
     this.listSeries = tipoDocumento.numeradors || null;
     if (this.listSeries) { //seleccionar la serie si existe numeradores
-      this.selectedValueSerie = !this.selectetSerie ? this.listSeries[0].serie : this.selectetSerie;
+      this.selectedValueSerie = !this.selectSerie ? this.listSeries[0].serie : this.selectSerie;
 
       this.listSeries.filter(x => x.serie === this.selectedValueSerie).map(x => { 
         this.rpt.numerador = x;
         this.numeroCorrelativo = x.ultimoEmitido + 1
       });
-    }
-
+    }    
+    
+    this.rpt.tipoDocumento = tipoDocumento;    
     this.rpt.correlativo = this.numeroCorrelativo;
     this.onChange.emit(this.rpt);
     ///

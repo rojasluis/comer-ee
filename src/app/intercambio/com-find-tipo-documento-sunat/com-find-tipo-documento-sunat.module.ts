@@ -15,7 +15,7 @@ import { MatSelectModule, MatInputModule } from '@angular/material';
     MatSelectModule, MatInputModule
   ],
   declarations: [ComFindTipoDocumentoSunatComponent],
-  exports: [ComFindTipoDocumentoSunatComponent]
+  exports: [ComFindTipoDocumentoSunatComponent] 
 })
 
 export class ComFindTipoDocumentoSunatModule {}

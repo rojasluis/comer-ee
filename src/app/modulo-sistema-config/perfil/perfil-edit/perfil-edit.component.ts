@@ -9,7 +9,6 @@ import { TreeNode } from 'primeng/api';
 
 
 import { PerfilModel } from '../perfil-model';
-import { MenuModel } from '../menu-model';
 import { PerfilDetalleModel } from '../perfil-detalle-model';
 import { MenuService } from '../../../core/menu/menu.service';
 
@@ -23,8 +22,7 @@ import { MenuService } from '../../../core/menu/menu.service';
 
 
 export class PerfilEditComponent implements OnInit {
-  perfil_model: PerfilModel;
-  menu_model: MenuModel[];
+  perfil_model: PerfilModel;  
   perfil_detalle_model: PerfilDetalleModel[];
 
   form: FormGroup;
@@ -108,7 +106,7 @@ export class PerfilEditComponent implements OnInit {
     });
 
     return this.selectedFiles.map((row: any) => {      
-      return new PerfilDetalleModel('', row.idmenu);
+      return new PerfilDetalleModel(null, row.idmenu);
     });
   }
 

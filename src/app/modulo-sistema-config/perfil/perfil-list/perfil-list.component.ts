@@ -22,6 +22,7 @@ export class PerfilListComponent implements OnInit {
   
   public db_perfil: any;
   public showChild: boolean = false;
+  public ShowBuqueda: boolean = false;
 
   @ViewChild('dt') dataTable: Table;
   public Typeahead = new Subject<string>();
