@@ -1,4 +1,3 @@
-import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../core/menu/menu.service';
 import { MenuAppService } from '../modulo-sistema-config/menu/menu-app.service';
