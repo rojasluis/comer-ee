@@ -135,6 +135,7 @@ const MENUITEMS = [
     children: [
       {state: 'menu', name: 'Menus',idmenu:'0601'},
       {state: 'perfiles', name: 'Perfiles',idmenu:'0602' },
+      {state: 'usuarios', name: 'Usuarios',idmenu:'0603' },
   
     ]
   }
@@ -166,5 +167,9 @@ export class MenuService {
   
   addMenuUsuario(menu){
     MenuUsuario.push(menu);
+  }
+
+  resetMenuUsuario(){
+    MenuUsuario.length = 0
   }
 }

@@ -30,12 +30,12 @@ import { AutocompleteSelectionValidatorDirective } from './validators/autocomple
   ],
   declarations: [PaginationComponent, DecimalDirective, CurrencyPipePipe, HighlightDirective, CtrlAutocompleteDirective, AutocompleteSelectionValidatorDirective],
   providers: [AuthGuard,CurrencyPipePipe
-     ,
-     {
-       provide : HTTP_INTERCEPTORS,
-       useClass : InterceptorAutorizationService,
-       multi : true
-     }
+     
+    //  {
+    //    provide : HTTP_INTERCEPTORS,
+    //    useClass : InterceptorAutorizationService,
+    //    multi : true
+    //  }
  
   ],
   exports: [PaginationComponent, HighlightDirective, CurrencyPipePipe, DecimalDirective, CtrlAutocompleteDirective, AutocompleteSelectionValidatorDirective]

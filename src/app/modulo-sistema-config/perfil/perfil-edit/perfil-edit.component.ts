@@ -105,6 +105,7 @@ export class PerfilEditComponent implements OnInit {
       }
     });
 
+
     return this.selectedFiles.map((row: any) => {      
       return new PerfilDetalleModel(null, row.idmenu);
     });
@@ -116,10 +117,12 @@ export class PerfilEditComponent implements OnInit {
       this.perfil_detalle_model = <PerfilDetalleModel[]>res.perfilesdetalles || null;
       this.loading = false; // laoding del TreeNode 
 
+
       // selecciona los accesos al cargar usuario      
       this.files.map(f => this.flattenTree(f, this.perfil_detalle_model))
       this.selectedFiles = this.arr;
       this.isEdit = true;
+
     });
   }
 

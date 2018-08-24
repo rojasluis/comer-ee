@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { PerfilService } from '../perfil/perfil.service';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatButtonModule,
     MatTooltipModule
   ],
-  declarations: [MenuMainComponent]
+  declarations: [MenuMainComponent],
+  providers : [PerfilService]
 })
 export class MenuModule { }
